@@ -2,7 +2,9 @@
 
 const express = require('express');
 const logger = require('./logger');
-
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const argv = require('./argv');
 const port = require('./port');
 const setup = require('./middlewares/frontendMiddleware');
@@ -14,6 +16,25 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
+app.use(bodyParser.json());
+app.use(cors());
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+)
+
+const mongoURI = 'mongodb://127.0.0.1/login&Signup';
+
+mongoose
+.connect(mongoURI, {useNewUrlParser: true})
+.then( () => console.log("Database Connected"))
+.catch(err => console.log(err))
+
+
+var Users = require('./routes/Users');
+console.log("REACHED BEFORE!!")
+app.use('/users', Users);
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 

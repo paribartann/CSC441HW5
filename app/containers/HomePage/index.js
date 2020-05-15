@@ -32,6 +32,7 @@ import { changeUsername } from './actions';
 import { makeSelectUsername } from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import Header from 'components/Header';
 
 const key = 'home';
 
@@ -58,6 +59,8 @@ export function HomePage({
   };
 
   return (
+  <div>
+    <Header />
     <article>
       <Helmet>
         <title>Home Page</title>
@@ -98,6 +101,7 @@ export function HomePage({
         </Section>
       </div>
     </article>
+    </div>
   );
 }
 

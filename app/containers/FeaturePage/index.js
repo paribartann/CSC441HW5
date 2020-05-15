@@ -12,10 +12,12 @@ import messages from './messages';
 import List from './List';
 import ListItem from './ListItem';
 import ListItemTitle from './ListItemTitle';
+import Header from 'components/Header';
 
 export default function FeaturePage() {
   return (
     <div>
+      <Header />
       <Helmet>
         <title>Feature Page</title>
         <meta

@@ -9,12 +9,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
+import RegisterPage from 'containers/Register/Loadable';
+import LoginPage from 'containers/Login/Loadable';
+
 import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
@@ -35,14 +37,19 @@ export default function App() {
         titleTemplate="%s - React.js Boilerplate"
         defaultTitle="React.js Boilerplate"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Login and SignUp" />
       </Helmet>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
-        <Route path="" component={NotFoundPage} />
-      </Switch>
+      {/* <Header /> */}
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={LoginPage} />
+          <Route path="/home" component={HomePage} />
+          <Route path="/features" component={FeaturePage} />
+          <Route path="/register" component={RegisterPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="" component={NotFoundPage} />
+        </Switch>
+      </BrowserRouter>
       <Footer />
       <GlobalStyle />
     </AppWrapper>
